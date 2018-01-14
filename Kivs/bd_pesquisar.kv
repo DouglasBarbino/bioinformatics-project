@@ -1,0 +1,31 @@
+# -*- coding: utf-8 -*-
+# @author: Douglas
+
+<ControllerBDPesquisar>:
+
+    FloatLayout:
+        Label:
+            text: 'Nome da sequ\u00EAncia:'
+            pos: (root.width / 5) * 1, (root.height / 8) * 6
+            size_hint: .1, .05
+            
+        Spinner:
+            id: bd_pesquisar_nome
+            text: 'Sem resultados'
+            values: 'Sem resultados'
+            pos: (root.width / 5) * 2, (root.height / 8) * 6
+            size_hint: .4, .05
+            self: root.obterDescricoes()
+
+        TextInput:
+            text: 'Resultado da pesquisa'
+            id: bd_pesquisar_dados
+            pos: (root.width / 10) * 1, (root.height / 10) * 3
+            size_hint: .8, .4
+            readonly: True
+
+        Button:
+            text: "Pesquisar"
+            size_hint: .8, .07
+            pos: (root.width / 10) * 1, (root.height / 20) * 3
+            on_release: root.pesquisar(bd_pesquisar_nome.text)

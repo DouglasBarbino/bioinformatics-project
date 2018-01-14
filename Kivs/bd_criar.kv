@@ -1,0 +1,100 @@
+# -*- coding: utf-8 -*-
+# @author: Douglas
+
+<ControllerBDCriar>:
+
+    FloatLayout:
+        id: bd_criar
+        bd_criar_popup_confirmacao: bd_criar_popup_confirmacao.__self__
+        bd_criar_popup_importarFasta: bd_criar_popup_importarFasta.__self__
+        Label:
+            text: 'Nome:'
+            pos: (root.width / 5) * 1, (root.height / 8) * 6
+            size_hint: .1, .05
+
+        TextInput:
+            id: bd_criar_nome
+            pos: (root.width / 5) * 2, (root.height / 8) * 6
+            size_hint: .4, .05
+            focus: True
+            multiline: False
+
+        Label:
+            text: 'Tipo:'
+            pos: (root.width / 5) * 1, (root.height / 8) * 5
+            size_hint: .1, .1
+
+        CheckBox:
+            group: 'bd_criar_tipo'
+            id: bd_criar_tipo_dna
+            active: True
+            pos: (root.width / 20) * 7.2, (root.height / 8) * 5
+            size_hint: .1, .1
+        Label:
+            text: 'DNA'
+            pos: (root.width / 20) * 8.2 , (root.height / 8) * 5
+            size_hint: .1, .1
+            
+        CheckBox:
+            group: 'bd_criar_tipo'
+            id: bd_criar_tipo_proteina
+            pos: (root.width / 20) * 11.2, (root.height / 8) * 5
+            size_hint: .1, .1
+        Label:
+            text: "Prote\u00EDna"
+            pos: (root.width / 20) * 12.3, (root.height / 8) * 5
+            size_hint: .1, .1
+
+        Label:
+            text: 'Sequ\u00EAncia:'
+            pos: (root.width / 5) * 1, (root.height / 8) * 4
+            size_hint: .1, .1
+            
+        TextInput:
+            id: bd_criar_seq
+            pos: (root.width / 5) * 2, (root.height / 8) * 3
+            size_hint: .4, .2
+
+        Button:
+            text: "Importar dados de um arquivo .fasta"
+            size_hint: .8, .07
+            pos: (root.width / 10) * 1, (root.height / 20) * 5
+            on_release: bd_criar_popup_importarFasta.open()
+
+        Button:
+            text: "Confirmar"
+            size_hint: .8, .07
+            pos: (root.width / 10) * 1, (root.height / 20) * 3
+            on_release: root.criar(bd_criar_nome.text, bd_criar_tipo_dna.active, bd_criar_seq.text), bd_criar_popup_confirmacao.open()
+
+        Popup:
+            id: bd_criar_popup_confirmacao
+            on_parent: if self.parent == bd_criar: bd_criar.remove_widget(self)
+            title: 'Resultado'
+            size_hint: .4, .4
+            content: bd_criar_popup
+            FloatLayout:
+                id: bd_criar_popup
+                Label:
+                    id: bd_criar_popup_label
+                    text: ' '
+                    pos: (root.width / 20) * 9, (root.height / 20) * 11
+                    size_hint: .1, .1
+                Button:
+                    text: 'OK'
+                    size_hint: .8, .2
+                    pos: (root.width / 20) * 7, (root.height / 20) * 7
+                    on_release: bd_criar_popup_confirmacao.dismiss()
+                    
+        Popup:
+            id: bd_criar_popup_importarFasta
+            on_parent: if self.parent == bd_criar: bd_criar.remove_widget(self)
+            title: 'Resultado'
+            size_hint: 1, 1
+            content: bd_criar_importarFasta
+            FloatLayout:
+                id: bd_criar_importarFasta
+                FileChooserIconView:
+                    id: filechooser
+                    path: root.obterCaminho()
+                    on_selection: root.preencherDados(filechooser.path, filechooser.selection), bd_criar_popup_importarFasta.dismiss()

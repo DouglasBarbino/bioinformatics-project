@@ -1,0 +1,32 @@
+# -*- coding: utf-8 -*-
+# @author: Douglas
+
+<ControllerBD>:
+
+    FloatLayout:
+        Button:
+            text: "Inserir"
+            pos: (root.width / 5) * 0, (root.height / 8) * 7
+            size_hint: .2, .1
+            on_release: root.bd_criar()
+        Button:
+            text: "Atualizar"
+            pos: (root.width / 5) * 1, (root.height / 8) * 7
+            size_hint: .2, .1
+            on_release: root.bd_atualizar()
+        Button:
+            text: "Ver dados"
+            pos: (root.width / 5) * 2, (root.height / 8) * 7
+            size_hint: .2, .1
+            on_release: root.bd_visualizar()
+        Button:
+            text: "Pesquisar\n pelo nome"
+            pos: (root.width / 5) * 3, (root.height / 8) * 7
+            halign: 'center'
+            size_hint: .2, .1
+            on_release: root.bd_pesquisar()
+        Button:
+            text: "Deletar"
+            pos: (root.width / 5) * 4, (root.height / 8) * 7
+            size_hint: .2, .1
+            on_release: root.bd_deletar()

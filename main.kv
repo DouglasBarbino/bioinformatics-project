@@ -1,0 +1,26 @@
+<Controller>:
+
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+
+    Button:
+        size_hint_y: None
+        pos: 0, (root.height / 4) * 3
+        height: '48dp'
+        text: "Opera\u00E7\u00F5es no banco de dados"
+        on_release: root.operacoes()
+
+    Button:
+        size_hint_y: None
+        pos: 0, root.height / 2
+        height: '48dp'
+        text: "Opera\u00E7\u00F5es de bioinformatica"
+        on_release: root.bioInformatica()
+
+    Button:
+        size_hint_y: None
+        pos: 0, root.height / 4
+        height: '48dp'
+        text: "Sobre"
+        on_release: root.sobre()

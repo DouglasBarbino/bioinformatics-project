@@ -1,0 +1,68 @@
+# -*- coding: utf-8 -*-
+# @author: Douglas
+
+<ControllerBioInfComplemento>:
+
+    FloatLayout:
+        id: bioinf_complemento
+        popup: popup.__self__
+        Label:
+            text: 'Nome da sequ\u00EAncia:'
+            pos: (root.width / 5) * 1, (root.height / 8) * 6
+            size_hint: .1, .05
+            
+        Spinner:
+            id: bioinf_complemento_nome
+            text: 'Sem resultados'
+            values: 'Sem resultados'
+            pos: (root.width / 5) * 2, (root.height / 8) * 6
+            size_hint: .4, .05
+            self: root.obterDescricoes()
+
+        TextInput:
+            text: 'Resultado da opera\u00E7\u00E3o'
+            id: bioinf_complemento_resultado
+            pos: (root.width / 10) * 1, (root.height / 10) * 4
+            size_hint: .8, .3
+            readonly: True
+
+        Button:
+            text: "Realizar o complemento reverso do DNA"
+            size_hint: .8, .07
+            pos: (root.width / 10) * 1, (root.height / 20) * 5
+            on_release: root.complemento(bioinf_complemento_nome.text)
+
+        Button:
+            id: bioinf_complemento_adicionarbd
+            text: "Adicionar ao banco de dados"
+            size_hint: .35, .07
+            pos: (root.width / 10) * 1, (root.height / 20) * 3
+            on_release: root.adicionarComplemento(bioinf_complemento_nome.text, bioinf_complemento_resultado.text), popup.open()
+            disabled: True
+
+        Button:
+            id: bioinf_complemento_criarFasta
+            text: "Criar arquivo .fasta"
+            size_hint: .35, .07
+            pos: (root.width / 20) * 11, (root.height / 20) * 3
+            on_release: root.criarFasta(bioinf_complemento_nome.text, bioinf_complemento_resultado.text)
+            disabled: True
+
+        Popup:
+            id: popup
+            on_parent: if self.parent == bioinf_complemento: bioinf_complemento.remove_widget(self)
+            title: 'Resultado'
+            size_hint: .4, .4
+            content: bioinf_complemento_popup
+            FloatLayout:
+                id: bioinf_complemento_popup
+                Label:
+                    id: bioinf_complemento_popup_label
+                    text: ' '
+                    pos: (root.width / 20) * 9, (root.height / 20) * 11
+                    size_hint: .1, .1
+                Button:
+                    text: 'OK'
+                    size_hint: .8, .2
+                    pos: (root.width / 20) * 7, (root.height / 20) * 7
+                    on_release: popup.dismiss()

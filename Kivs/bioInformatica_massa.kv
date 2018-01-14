@@ -1,0 +1,31 @@
+# -*- coding: utf-8 -*-
+# @author: Douglas
+
+<ControllerBioInfMassa>:
+
+    FloatLayout:
+        Label:
+            text: 'Nome da sequ\u00EAncia:'
+            pos: (root.width / 5) * 1, (root.height / 8) * 6
+            size_hint: .1, .05
+            
+        Spinner:
+            id: bioinf_massa_nome
+            text: 'Sem resultados'
+            values: 'Sem resultados'
+            pos: (root.width / 5) * 2, (root.height / 8) * 6
+            size_hint: .4, .05
+            self: root.obterDescricoes()
+
+        TextInput:
+            text: 'Resultado da opera\u00E7\u00E3o'
+            id: bioinf_massa_resultado
+            pos: (root.width / 10) * 1, (root.height / 10) * 4
+            size_hint: .8, .3
+            readonly: True
+
+        Button:
+            text: "Calcular a massa molecular da prote\u00EDna"
+            size_hint: .8, .07
+            pos: (root.width / 10) * 1, (root.height / 20) * 5
+            on_release: root.massa(bioinf_massa_nome.text)
